@@ -71,4 +71,13 @@ public class UserDaoStubImpl implements UserDao {
     public void deleteUser(UserEntity user) {
         users.remove(user);
     }
+    @Override
+    public void saveUser(UserEntity goal) {
+        throw new UnsupportedOperationException("method saveUser isn't ready");
+    }
+
+    @Override
+    public void saveUsersWords(UserEntity goal) {
+        throw new UnsupportedOperationException("method saveUsersWords isn't ready");
+    }
 }

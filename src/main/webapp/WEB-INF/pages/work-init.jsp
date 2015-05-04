@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,6 +8,7 @@
 <head>
     <title></title>
     <script type="text/javascript" charset="utf-8" src="resources/js/wordsunk.js"></script>
+    <script type="text/javascript" charset="utf-8" src="resources/js/jquery-2.1.3.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/styles.css">
 </head>
 <body>
@@ -24,13 +25,13 @@
 
 <span>
     input text<br>
-    <textarea rows="4" cols="40" id="textID">"qw  the test the thes these sss err errs </textarea>
+    <textarea rows="7" cols="60" id="textID">"qw  the test the thes these sss err errs </textarea>
 </span>
         </td>
         <td>
 <span>
     input known words<br>
-    <textarea rows="4" cols="40" id="inputKnownWordsID">${user.words}</textarea>
+    <textarea rows="7" cols="60" id="inputKnownWordsID">${user.words}</textarea>
 </span>
         </td>
     </tr>
@@ -42,6 +43,9 @@
 <br><br>
 
 <input type="button" value="known words" onclick="getKnownWordsAfterEditing()"/>
+
+<div id="result">----
+</div>
 <br>
 <table>
     <tr>

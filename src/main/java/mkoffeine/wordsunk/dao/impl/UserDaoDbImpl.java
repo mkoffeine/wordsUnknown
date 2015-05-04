@@ -62,4 +62,13 @@ public class UserDaoDbImpl implements UserDao {
         this.sessionFactory = sessionFactory;
     }
 
+    @Override
+    public void saveUser(UserEntity goal) {
+        throw new UnsupportedOperationException("method saveUser isn't ready");
+    }
+
+    @Override
+    public void saveUsersWords(UserEntity goal) {
+        throw new UnsupportedOperationException("method saveUsersWords isn't ready");
+    }
 }

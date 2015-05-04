@@ -48,11 +48,13 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     -->
-    <bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoStubImpl"/>
+    <!--<bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoStubImpl"/>-->
+    <bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoFileImpl"/>
 
-<!--    <bean id="userEntityDetailService" class="mkoffeine.wordsunk.security.UserEntityDetailService">
-        <property name="userDao" ref="userHibernateDao" />
-    </bean>-->
+
+    <!--    <bean id="userEntityDetailService" class="mkoffeine.wordsunk.security.UserEntityDetailService">
+            <property name="userDao" ref="userHibernateDao" />
+        </bean>-->
 <!--
     <bean id="hibernate4AnnotatedSessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

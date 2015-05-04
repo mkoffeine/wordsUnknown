@@ -169,7 +169,14 @@ function getKnownWordsAfterEditing() {
 }
 
 function saveUnknownWords() {
-//todo implement
+	$.ajax({
+		method: "POST",
+		data : { words: document.getElementById("outputKnownWordsID").value },
+		url : 'saveWords',
+		success : function(data) {
+			$('#result').html(data);
+		}
+	});
 }
 
 function initKnownWordsBeforeAction() {
