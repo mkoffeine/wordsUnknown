@@ -165,7 +165,20 @@ function getKnownWordsAfterEditing() {
 	var outputUnKnownWords = document.getElementById("outputUnKnownWordsIDNotSorted");
 	outputUnKnownWords.value = mergedUnkWords.join("\n");
 
+	createRating();
 	saveUnknownWords();
+}
+
+function createRating() {
+
+	$.ajax({
+		method: "POST",
+		data : { words: document.getElementById("outputUnKnownWordsID").value },
+		url : 'getFreq',
+		success : function(data) {
+			$('#rateID').html(data);
+		}
+	});
 }
 
 function saveUnknownWords() {

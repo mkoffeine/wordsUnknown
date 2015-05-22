@@ -72,6 +72,8 @@
 </table>
 
 
+<div id="rateID">----
+</div>
 <!--
 Test<br>
 !!! <span class="knownWord">qwer</span>, <span class="unKnownWord" onclick="clickOnUnkWord(this);">qwer</span>.. s <span>sdvsvd</span>.
