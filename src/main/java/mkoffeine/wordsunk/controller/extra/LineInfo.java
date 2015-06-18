@@ -23,6 +23,7 @@ public class LineInfo implements Comparable<LineInfo> {
             return mainWord.getFreq();
         }
         return Math.max(mainWord.getFreq(), foundWords.last().getFreq());
+//        return Math.min(mainWord.getFreq(), foundWords.first().getFreq());
     }
 
     public LineInfo() {
@@ -64,7 +65,14 @@ public class LineInfo implements Comparable<LineInfo> {
     public int compareTo(LineInfo o) {
         if (this == o) return 0;
         if (this.hitsInText == o.hitsInText) {
-            return o.getMaxFreq() - this.getMaxFreq();
+            if (o.getMaxFreq() == this.getMaxFreq()) {
+                return o.getMainWord().compareTo(this.getMainWord());
+            }
+            else {
+                return o.getMaxFreq() - this.getMaxFreq();
+//                todo fix sorting
+//                return this.getMaxFreq() - o.getMaxFreq();
+            }
         }
         return o.hitsInText - this.hitsInText;
     }
@@ -83,7 +91,7 @@ public class LineInfo implements Comparable<LineInfo> {
         if (f < 5000) {
             return "<b>" + f + "</b>";
         }
-        else if (f < 20000) {
+        else if (f < 25000) {
             return "<b>" + f / 1000 + "</b>" + "k";
         } else {
             return "" + f / 1000 + "k";

@@ -16,9 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-/**
- * Created by Michael on 10.05.2015.
- */
+
 @Controller
 public class PriorityWordsController {
     private static String PATH = "x:\\_Myhaylo\\idea\\00tb\\en_full-raw.dic";
@@ -96,6 +94,13 @@ public class PriorityWordsController {
                         index = Arrays.binarySearch(wordsArray, new WordInfo(w, 0, 0));
                         if (index > 0 && index < wordsArray.length) {
                             li.addWord(wordsArray[index]);
+                        }
+                        for (String suffix2 : SUFFIXES) {
+                            String w2 = w + suffix2;
+                            index = Arrays.binarySearch(wordsArray, new WordInfo(w2, 0, 0));
+                            if (index > 0 && index < wordsArray.length) {
+                                li.addWord(wordsArray[index]);
+                            }
                         }
                     }
 
