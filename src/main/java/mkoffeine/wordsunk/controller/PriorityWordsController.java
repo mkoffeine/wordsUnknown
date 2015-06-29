@@ -25,8 +25,10 @@ public class PriorityWordsController {
             "ness", "less", "ism", "hood", "ment"
             , "al", "ent", "nt", "sm", "m", "st", "an"
             , "ss", "ng", "n", "ble", "le", "r", "l"
-            , "ul", "sm", "ood", "od", "d"
+            , "ul", "ood", "od", "d"
             , "on", "ion", "tion"};
+
+    private static List<String> cantDoubleLetter = Arrays.asList("a", "o", "e", "u", "i", "x", "w", "y", "z");;
 
 
     private WordInfo[] wordsArray = new WordInfo[0];
@@ -91,16 +93,10 @@ public class PriorityWordsController {
                     // MINUS suffux
                     if (word.endsWith(suffix)) {
                         w = word.substring(0, word.length() - suffix.length());
-                        index = Arrays.binarySearch(wordsArray, new WordInfo(w, 0, 0));
-                        if (index > 0 && index < wordsArray.length) {
-                            li.addWord(wordsArray[index]);
-                        }
-                        for (String suffix2 : SUFFIXES) {
-                            String w2 = w + suffix2;
-                            index = Arrays.binarySearch(wordsArray, new WordInfo(w2, 0, 0));
-                            if (index > 0 && index < wordsArray.length) {
-                                li.addWord(wordsArray[index]);
-                            }
+                        addingWords(li, w);
+                        int ln = w.length();
+                        if (ln > 2 && w.charAt(ln-1) == w.charAt(ln-2) && canDouble(w.charAt(ln-1))) {
+                            addingWords(li, w.substring(0, ln - 1));
                         }
                     }
 
@@ -117,6 +113,26 @@ public class PriorityWordsController {
 
         System.out.println("-------------------end getHitsInText");
         return result.toString();
+    }
+
+    private boolean canDouble(char ch) {
+        //todo Add checking word if word is:  ...+ 1 sysslable + woven + double end
+        //,not only doubling
+        return !cantDoubleLetter.contains(String.valueOf(ch));
+    }
+    private void addingWords(LineInfo li, String w) {
+        int index;
+        index = Arrays.binarySearch(wordsArray, new WordInfo(w, 0, 0));
+        if (index > 0 && index < wordsArray.length) {
+            li.addWord(wordsArray[index]);
+        }
+        for (String suffix2 : SUFFIXES) {
+            String w2 = w + suffix2;
+            index = Arrays.binarySearch(wordsArray, new WordInfo(w2, 0, 0));
+            if (index > 0 && index < wordsArray.length) {
+                li.addWord(wordsArray[index]);
+            }
+        }
     }
 
     public static void main(String[] args) {
