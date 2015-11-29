@@ -18,6 +18,13 @@
 
 <br>
 -------------------------------------------------
+<%--
+    textID    inputKnownWordsID
+        button "action" runWordGeneration()
+    result
+    outputKnownWordsID  outputUnKnownWordsID outputUnKnownWordsIDNotSorted
+    rateID
+--%>
 <br>
 <table>
     <tr>

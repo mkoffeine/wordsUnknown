@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Michael on 04.04.2015.
  */
 public class UserEntityDetailService implements UserDetailsService {
-    @Autowired
+    //    @Autowired
     private UserDao userDao;
 
     @Override
@@ -28,7 +28,7 @@ public class UserEntityDetailService implements UserDetailsService {
         if (u.getUserGroup() != null && "admin".equals(u.getUserGroup().toLowerCase())) {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
-        UserDetails userDetails = new User(u.getLoginName(), u.getPassword(),authorities);
+        UserDetails userDetails = new User(u.getLoginName(), u.getPassword(), authorities);
         return userDetails;
     }
 

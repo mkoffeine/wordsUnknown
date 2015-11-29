@@ -13,8 +13,9 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <mvc:annotation-driven />
-    <mvc:resources mapping="/resources/**" location="/resourceWeb/" />
+
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/resources/**" location="/resourceWeb/"/>
     <!--<mvc:default-servlet-handler/>-->
 
     <context:component-scan base-package="mkoffeine"/>
@@ -29,36 +30,25 @@
         </property>
     </bean>
 
-    <bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+    <bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost/test"/>
+        <property name="url" value="jdbc:mysql://localhost/unkwords"/>
         <property name="username" value="root"/>
-        <property name="password" value="asdfasdf"/>
+        <property name="password" value="root"/>
         <!--<property name="maxActive" value="10"/>-->
         <!--<property name="maxWait" value="1000"/>-->
         <!--<property name="poolPreparedStatements" value="true"/>-->
         <!--<property name="defaultAutoCommit" value="true"/>-->
     </bean>
 
-    <!--<bean id="goalDao" class="mkoffeine.wordsunk.dao.impl.UserDaoDbImpl">
-        <property name="dataSource" ref="myDataSource"/>
-    </bean>-->
-    <!--
     <bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoDbImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
-    -->
-    <!--<bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoStubImpl"/>-->
-    <bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoFileImpl"/>
 
 
-    <!--    <bean id="userEntityDetailService" class="mkoffeine.wordsunk.security.UserEntityDetailService">
-            <property name="userDao" ref="userHibernateDao" />
-        </bean>-->
-<!--
     <bean id="hibernate4AnnotatedSessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="myDataSource" />
+        <property name="dataSource" ref="myDataSource"/>
         <property name="annotatedClasses">
             <list>
                 <value>mkoffeine.wordsunk.entity.UserEntity</value>
@@ -68,18 +58,18 @@
             <props>
 
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                &lt;!&ndash;<prop key="hibernate.current_session_context_class">thread</prop>&ndash;&gt;
+                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
 
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>-->
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
 
 
 </beans>

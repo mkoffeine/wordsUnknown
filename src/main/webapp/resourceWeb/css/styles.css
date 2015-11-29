@@ -1,13 +1,16 @@
-.knownWord{
-    color:green;
+.knownWord {
+    color: green;
 }
-.unKnownWord{
-    color:#880000;
+
+.unKnownWord {
+    color: #880000;
     border: #ffe4c4;
 }
-.outOfSpace{
-    color:#222255;
+
+.outOfSpace {
+    color: #222255;
 }
-.notInList{
-    color:#4444cc;
+
+.notInList {
+    color: #4444cc;
 }

@@ -2,6 +2,7 @@ package mkoffeine.wordsunk.dao.impl;
 
 import mkoffeine.wordsunk.dao.UserDao;
 import mkoffeine.wordsunk.entity.UserEntity;
+import mkoffeine.wordsunk.utils.MaxValue;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.util.List;
 
 
 public class UserDaoFileImpl implements UserDao {
-    public static final String PATH_TO_FILE = "x:\\_Myhaylo\\idea13\\000\\WordsUnk\\myWords\\myWords.txt";
+    public static final String PATH_TO_FILE = "x:\\_Myhaylo\\idea13\\000\\WordsUnk\\myWords\\myWordsTest.txt";
     private List<UserEntity> users = new ArrayList<>();
 
     public UserDaoFileImpl() {
@@ -26,15 +27,23 @@ public class UserDaoFileImpl implements UserDao {
 //        userEntity.setWords("the test words again");
         userEntity.setWords(getWordsFromFile(PATH_TO_FILE));
         users.add(userEntity);
+
+        userEntity = new UserEntity();
+        userEntity.setId(2);
+        userEntity.setLoginName("mmm");
+        userEntity.setPassword("");
+        userEntity.setUserGroup("admin");
+        userEntity.setWords("the test words");
+        users.add(userEntity);
     }
 
     @Override
     public UserEntity getUserById(int id) {
-        for(UserEntity u : users) {
+        for (UserEntity u : users) {
             if (u.getId() == id) {
-                if("FAKE_User".equals(u.getLoginName())) {
-                    u.setWords(getWordsFromFile(PATH_TO_FILE));
-                }
+//              if("FAKE_User".equals(u.getLoginName())) {
+                u.setWords(getWordsFromFile(PATH_TO_FILE));
+//              }
                 return u;
             }
         }
@@ -51,7 +60,7 @@ public class UserDaoFileImpl implements UserDao {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            words =  new String(encoded, StandardCharsets.UTF_8);
+            words = new String(encoded, StandardCharsets.UTF_8);
         } else {
             try {
                 f.createNewFile();
@@ -67,7 +76,7 @@ public class UserDaoFileImpl implements UserDao {
 
     @Override
     public UserEntity getUserByName(String name) {
-        for(UserEntity u : users) {
+        for (UserEntity u : users) {
             if (u.getLoginName().equals(name)) {
                 return u;
             }
@@ -91,15 +100,19 @@ public class UserDaoFileImpl implements UserDao {
     }
 
     @Override
-    public void saveUser(UserEntity user) {
+    public void saveUser(UserEntity userEntity) {
+        userEntity.setId(MaxValue.getMax());
+        users.add(userEntity);
         throw new UnsupportedOperationException("method saveUser isn't ready");
     }
 
     @Override
     public void saveUsersWords(UserEntity user) {
-        if (user.getId()==1) {
+        if (user.getId() == 1) {
             try {
-                Files.write(Paths.get(PATH_TO_FILE), user.getWords().getBytes());
+//                Files.write(Paths.get(PATH_TO_FILE), user.getWords().getBytes());
+                Files.write(Paths.get(PATH_TO_FILE + "___" + user.getLoginName()), user.getWords().getBytes());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

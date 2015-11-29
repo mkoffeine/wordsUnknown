@@ -2,6 +2,7 @@ package mkoffeine.wordsunk.dao.impl;
 
 import mkoffeine.wordsunk.dao.UserDao;
 import mkoffeine.wordsunk.entity.UserEntity;
+import mkoffeine.wordsunk.utils.MaxValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.List;
  */
 public class UserDaoStubImpl implements UserDao {
     private List<UserEntity> users = new ArrayList<>();
+
     public UserDaoStubImpl() {
+        System.out.println("---------------------UserDaoStubImpl-------------------------------");
         UserEntity userEntity = new UserEntity();
-        userEntity.setId(1);
+        userEntity.setId(3);
         userEntity.setLoginName("mmm");
         userEntity.setPassword("mmm");
         userEntity.setUserGroup("admin");
@@ -29,17 +32,18 @@ public class UserDaoStubImpl implements UserDao {
         users.add(userEntity);
 
         userEntity = new UserEntity();
-        userEntity.setId(3);
+        userEntity.setId(1);
         userEntity.setLoginName("FAKE_User");
         userEntity.setPassword("mmm");
         userEntity.setUserGroup("admin");
         userEntity.setWords("the test words again");
         users.add(userEntity);
+        MaxValue.findAndSetMaxValue(users.toArray(new UserEntity[0]));
     }
 
     @Override
     public UserEntity getUserById(int id) {
-        for(UserEntity u : users) {
+        for (UserEntity u : users) {
             if (u.getId() == id) {
                 return u;
             }
@@ -49,7 +53,7 @@ public class UserDaoStubImpl implements UserDao {
 
     @Override
     public UserEntity getUserByName(String name) {
-        for(UserEntity u : users) {
+        for (UserEntity u : users) {
             if (u.getLoginName().equals(name)) {
                 return u;
             }
@@ -71,13 +75,15 @@ public class UserDaoStubImpl implements UserDao {
     public void deleteUser(UserEntity user) {
         users.remove(user);
     }
+
     @Override
-    public void saveUser(UserEntity goal) {
-        throw new UnsupportedOperationException("method saveUser isn't ready");
+    public void saveUser(UserEntity userEntity) {
+        userEntity.setId(MaxValue.getMax());
+        users.add(userEntity);
     }
 
     @Override
-    public void saveUsersWords(UserEntity goal) {
-        throw new UnsupportedOperationException("method saveUsersWords isn't ready");
+    public void saveUsersWords(UserEntity userEntity) {
+
     }
 }

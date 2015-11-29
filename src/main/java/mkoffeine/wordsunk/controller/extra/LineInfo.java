@@ -67,8 +67,7 @@ public class LineInfo implements Comparable<LineInfo> {
         if (this.hitsInText == o.hitsInText) {
             if (o.getMaxFreq() == this.getMaxFreq()) {
                 return o.getMainWord().compareTo(this.getMainWord());
-            }
-            else {
+            } else {
                 return o.getMaxFreq() - this.getMaxFreq();
 //                todo fix sorting
 //                return this.getMaxFreq() - o.getMaxFreq();
@@ -90,8 +89,7 @@ public class LineInfo implements Comparable<LineInfo> {
     private String getPositionHtml(int f) {
         if (f < 5000) {
             return "<b>" + f + "</b>";
-        }
-        else if (f < 25000) {
+        } else if (f < 25000) {
             return "<b>" + f / 1000 + "</b>" + "k";
         } else {
             return "" + f / 1000 + "k";

@@ -14,21 +14,21 @@
 <body>
 <h2>User list:</h2>
 <table border="1">
-  <th>ID</th>
-  <th>name</th>
-  <th>words</th>
-  <th>user group</th>
+    <th>ID</th>
+    <th>name</th>
+    <th>words</th>
+    <th>user group</th>
 
-<c:forEach items="${users}" var="user">
-  <tr>
-    <td> ${user.id} </td>
-    <td> ${user.loginName} </td>
-    <td> ${user.words} </td>
-    <td> ${user.userGroup} </td>
+    <c:forEach items="${users}" var="user">
+    <tr>
+        <td> ${user.id} </td>
+        <td> ${user.loginName} </td>
+        <td> ${user.words} </td>
+        <td> ${user.userGroup} </td>
 
-  </tr>
+    </tr>
 
-</c:forEach>
+    </c:forEach>
 
 
 </body>

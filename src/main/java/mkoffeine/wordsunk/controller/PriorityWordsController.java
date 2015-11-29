@@ -28,7 +28,7 @@ public class PriorityWordsController {
             , "ul", "ood", "od", "d"
             , "on", "ion", "tion"};
 
-    private static List<String> cantDoubleLetter = Arrays.asList("a", "o", "e", "u", "i", "x", "w", "y", "z");;
+    private static List<String> cantDoubleLetter = Arrays.asList("a", "o", "e", "u", "i", "x", "w", "y", "z");
 
 
     private WordInfo[] wordsArray = new WordInfo[0];
@@ -95,7 +95,7 @@ public class PriorityWordsController {
                         w = word.substring(0, word.length() - suffix.length());
                         addingWords(li, w);
                         int ln = w.length();
-                        if (ln > 2 && w.charAt(ln-1) == w.charAt(ln-2) && canDouble(w.charAt(ln-1))) {
+                        if (ln > 2 && w.charAt(ln - 1) == w.charAt(ln - 2) && canDouble(w.charAt(ln - 1))) {
                             addingWords(li, w.substring(0, ln - 1));
                         }
                     }
@@ -120,6 +120,7 @@ public class PriorityWordsController {
         //,not only doubling
         return !cantDoubleLetter.contains(String.valueOf(ch));
     }
+
     private void addingWords(LineInfo li, String w) {
         int index;
         index = Arrays.binarySearch(wordsArray, new WordInfo(w, 0, 0));

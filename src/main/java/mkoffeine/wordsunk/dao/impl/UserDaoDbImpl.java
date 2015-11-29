@@ -21,9 +21,10 @@ public class UserDaoDbImpl implements UserDao {
     private Session getSession() {
         return sessionFactory.getCurrentSession();
     }
+
     @Transactional
     public UserEntity getUserById(int id) {
-        return (UserEntity)getSession().get(UserEntity.class, id);
+        return (UserEntity) getSession().get(UserEntity.class, id);
     }
 
     @Transactional
@@ -43,12 +44,14 @@ public class UserDaoDbImpl implements UserDao {
     public List<UserEntity> getAll() {
         return getSession().createCriteria(UserEntity.class).list();
     }
+
     @Transactional
     public void insertUser(UserEntity user) {
         getSession().persist(user);
         System.out.println("Insert " + user);
         //mysql> insert into userentity (loginName, password, userGroup) values ("Mike", "$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y", "admin");
     }
+
     @Transactional
     public void deleteUser(UserEntity user) {
         getSession().delete(user);
@@ -62,8 +65,8 @@ public class UserDaoDbImpl implements UserDao {
         this.sessionFactory = sessionFactory;
     }
 
-    @Override
-    public void saveUser(UserEntity goal) {
+    @Transactional
+    public void saveUser(UserEntity user) {
         throw new UnsupportedOperationException("method saveUser isn't ready");
     }
 

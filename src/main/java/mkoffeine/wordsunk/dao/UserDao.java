@@ -9,10 +9,16 @@ import java.util.List;
  */
 public interface UserDao {
     public UserEntity getUserById(int id);
+
     public UserEntity getUserByName(String name);
-    public List<UserEntity> getAll() ;
+
+    public List<UserEntity> getAll();
+
     public void insertUser(UserEntity goal);
+
     public void deleteUser(UserEntity goal);
+
     public void saveUser(UserEntity goal);
+
     public void saveUsersWords(UserEntity goal);
 }

@@ -7,30 +7,35 @@
                  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 
-    <!--<http&lt;!&ndash; access-denied-page="/error403.jsp"&ndash;&gt;>-->
-    <http auto-config="true" >
-        <intercept-url pattern="/**" access="ROLE_USER" />
+    <http auto-config="true">
 
-        <logout logout-url="/logout" logout-success-url="/index"/>
+        <intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/register*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <logout logout-url="/logout" logout-success-url="/login?logout"/>
+
+        <intercept-url pattern="/**" access="ROLE_USER"/>
+
+
+        <form-login login-page="/login" default-target-url="/work" authentication-failure-url="/login?error"
+                    username-parameter="username"
+                    password-parameter="password"/>
+
     </http>
-
-    <!--<authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER"/>
-                <user name="mmm" password="mmm" authorities="ROLE_ADMIN,ROLE_USER,admin"/>
-                <user name="user1" password="1111" authorities="ROLE_USER"/>
-                <user name="user2" password="2222" disabled="true" authorities="ROLE_USER"/>
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>-->
-
-   <!-- <authentication-manager>
-        <authentication-provider user-service-ref="userEntityDetailService" >
-            <password-encoder hash="bcrypt" />
-        </authentication-provider>
-    </authentication-manager>-->
     <authentication-manager>
-        <authentication-provider user-service-ref="userEntityDetailService" />
+        <authentication-provider user-service-ref="userEntityDetailService">
+            <!--<password-encoder hash="bcrypt"/>-->
+        </authentication-provider>
+
     </authentication-manager>
+
+    <!--<beans:bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoStubImpl" scope="singleton"/>-->
+    <!--<bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoFileImpl"/>-->
+    <!--<bean id="userHibernateDao" class="mkoffeine.wordsunk.dao.impl.UserDaoDbImpl"/>-->
+
+
+    <beans:bean id="userEntityDetailService" class="mkoffeine.wordsunk.security.UserEntityDetailService">
+        <beans:property name="userDao" ref="userHibernateDao"/>
+    </beans:bean>
+
+
 </beans:beans>
