@@ -14,8 +14,6 @@
 </head>
 <body>
 
-<h1>Spring Security Custom Login Form (XML)</h1>
-
 <div id="login-box">
 
     <h3>Login with Username and Password</h3>
