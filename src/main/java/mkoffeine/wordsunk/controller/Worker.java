@@ -21,13 +21,23 @@ import java.util.Random;
 public class Worker {
     @Autowired
     private UserDao userDao;
-    @RequestMapping("/work")
-    public ModelAndView work() {
-        ModelAndView modelAndView = new ModelAndView("work-init");
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        modelAndView.addObject("user",userDao.getUserByName(auth.getName()));
+
+    @RequestMapping("/js/wordsunk")
+    public ModelAndView jsFile() {
+        return getUsersModelAndView("js/wordsunk");
+    }
+
+    private ModelAndView getUsersModelAndView(String viewName) {
+        ModelAndView modelAndView = new ModelAndView(viewName);
         modelAndView.addObject("user", getUserEntityWithFile());
         return modelAndView;
+    }
+
+    @RequestMapping("/work")
+    public ModelAndView work() {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        modelAndView.addObject("user",userDao.getUserByName(auth.getName()));
+        return getUsersModelAndView("work-init");
     }
 
     @RequestMapping("/users")

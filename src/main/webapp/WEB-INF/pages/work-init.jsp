@@ -7,7 +7,7 @@
 <html>
 <head>
     <title></title>
-    <script type="text/javascript" charset="utf-8" src="resources/js/wordsunk.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/wordsunk"></script>
     <script type="text/javascript" charset="utf-8" src="resources/js/jquery-2.1.3.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/styles.css">
 </head>
@@ -31,7 +31,7 @@
         <td>
 <span>
     input known words<br>
-    <textarea rows="7" cols="60" id="inputKnownWordsID">${user.words}</textarea>
+    <textarea rows="7" cols="60" id="inputKnownWordsID" readonly>${user.words}</textarea>
 </span>
         </td>
     </tr>
